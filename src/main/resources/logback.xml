@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="3 seconds">
+    <contextName>proxydroid</contextName>
+
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/var/log/fintech/proxydroid.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/var/log/kartuku/loyalty-api-v3.log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{YYYY-MM-dd HH:mm:ss} %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <logger name="com.ovo.fintech.proxydroid" level="info" additivity="false">
+        <appender-ref ref="FILE"/>
+    </logger>
+    <root level="info">
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
